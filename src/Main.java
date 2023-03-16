@@ -45,19 +45,20 @@ public class Main {
 		int age = 16;
 		boolean mustGoToKinderGarden = age >= 2 && age <= 6;
 		boolean mustGoToSchool = age >= 7 && age <= 18;
-		boolean mustGoToUniversity = age > 18 && age <= 24;
-		boolean mustGoToWork = age > 24;
-		if (mustGoToKinderGarden) {
-			System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в детский сад");
-		}
-		if (mustGoToSchool) {
-			System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в школу");
-		}
-		if (mustGoToUniversity) {
-			System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в университет");
-		}
+		boolean mustGoToUniversity = age > 18 && age < 24;
+		boolean mustGoToWork = age >= 24;
 		if (mustGoToWork) {
 			System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить на работу");
+		} else {
+			if (mustGoToKinderGarden) {
+				System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в детский сад");
+			}
+			if (mustGoToSchool) {
+				System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в школу");
+			}
+			if (mustGoToUniversity) {
+				System.out.println("Если возраст человека равен " + age + ", то ему нужно ходить в университет");
+			}
 		}
 	}
 
@@ -80,30 +81,73 @@ public class Main {
 	static void taskSix() {
 		int capacityRailCar = 102;
 		int seatingPassengerSeats = 60;
-		int numberPassengers = 101;
-		if (numberPassengers >= capacityRailCar) {
-			System.out.println("Вагон уже полностью забит");
-		} else {
-			if (numberPassengers >= seatingPassengerSeats) {
-				System.out.println("Есть стоячие места");
+		int standingPassengerSeats = capacityRailCar - seatingPassengerSeats;
+
+		int countSeatPassengers = 8;
+		int countStandPassengers = 30;
+
+
+		if (capacityRailCar > (countSeatPassengers + countStandPassengers)) {
+			if (seatingPassengerSeats >= countSeatPassengers) {
+				System.out.println("Есть " + (seatingPassengerSeats - countSeatPassengers) + " сидячих мест");
 			} else {
-				System.out.println("Есть сидячие места");
+				System.out.println("Число допустимых сидячих пассажиров превышено на " + (countSeatPassengers - seatingPassengerSeats) + " человек");
 			}
+
+			if (standingPassengerSeats >= countStandPassengers) {
+				System.out.println("Есть " + (standingPassengerSeats - countStandPassengers) + " стоячих мест");
+			} else {
+				System.out.println("Число допустимых стоячих пассажиров превышено на " + (countStandPassengers - standingPassengerSeats) + " человек");
+			}
+		} else {
+			System.out.println("Вагон уже полностью забит");
 		}
 
 	}
 
 	static void taskSeven() {
-		int one = 51;
-		int two = 50;
+		int one = 54;
+		int two = 67;
 		int three = 66;
-		if (one > two && one > three) {
-			System.out.println("Число one большее");
-		} else {
-			if (two > three) {
-				System.out.println("Число two большее");
+		boolean allNoEqually = one != two && two != three && one != three;
+		boolean allEqually = one == two && two == three;
+
+		if (allNoEqually) {
+			if (one > two && one > three) {
+				System.out.println("Число one большее и равно " + one);
 			} else {
-				System.out.println("Число three большее");
+				if (two > three) {
+					System.out.println("Число two большее и равно " + two);
+				} else {
+					System.out.println("Число three большее и равно " + three);
+				}
+			}
+		} else {
+			if (allEqually) {
+				System.out.println("Все числа равны " + one);
+			} else {
+				if (one == two) {
+					if (one > three) {
+						System.out.println("Число one и two большие и равны " + one);
+					} else {
+						System.out.println("Число three большее и равно " + three);
+					}
+				}
+				if (one == three) {
+					if (one > two) {
+						System.out.println("Число one и three большие и равны " + one);
+					} else {
+						System.out.println("Число two большее и равно " + two);
+					}
+				}
+
+				if (two == three) {
+					if (two > one) {
+						System.out.println("Число two и three большие и равны " + two);
+					} else {
+						System.out.println("Число one большее и равно " + one);
+					}
+				}
 			}
 		}
 	}
